@@ -1,15 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
 import Demo from "./components/Demo";
 
-const App = () => {
-  return (
-    <div>
-      <Demo name>
-        <h1>hello , i'm children of Demo Component</h1>
-        <h2>dskjhdsjhj</h2>
-      </Demo>
-    </div>
-  );
-};
-
-export default App;
+export default class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <div>
+        <h1 className="text-[10vw]"> App</h1>
+        <Demo name="chomkdlkkhdjslkhjkdslkhjddsiuiudgdsksdk" />
+      </div>
+    );
+  }
+}

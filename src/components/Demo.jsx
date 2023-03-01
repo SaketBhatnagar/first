@@ -1,24 +1,31 @@
-import React from "react";
-import Types from "prop-types";
-const Demo = props => {
-  console.log(props);
-  return (
-    <div className="bg-slate-700 text-white p-[20px] text-[24px] flex justify-center hover:bg-slate-400">
-      <span className=" p-[5px] border-b-[2px] block border-yellow-300 mb-[20px]">
-        {" "}
-        Demo
-      </span>
-      <h1 className="">Name : {props.name}</h1>
-    </div>
-  );
-};
+import { Component } from "react";
 
-Demo.defaultProps = {
-  name: "No User",
-};
+class Demo extends Component {
+  constructor(props) {
+    super();
+    this.name = props.name;
+    this.state = {
+      name: "chombu",
+    };
+    this.count = 0;
+  }
 
-Demo.propTypes = {
-  name: Types.string.isRequired,
-};
+  componentDidMount() {
+    // this.state.name = "sjhsjgsj";
+    this.setState({ name: "chombu22222" });
+    this.setState({ name: "chombu2289768776" });
+    console.log("componentDidmount running.....");
+  }
+  render() {
+    console.log("render running");
+    return (
+      <>
+        <h1>Demo Class Component</h1>
+        <h2>{this.name}</h2>
+        <h2>{this.state.name}</h2>
+      </>
+    );
+  }
+}
 
 export default Demo;
