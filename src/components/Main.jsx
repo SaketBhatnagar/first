@@ -1,34 +1,69 @@
-import { UseState, useState } from "react";
-const Main = () => {
-  let [count, setCount] = useState(0);
+import React, { useEffect, useState } from "react";
 
-  let handleIncrement = () => {
-    setCount(prev => prev + 1);
-    // setCount(count + 1);
+const Main = () => {
+  let [data, setdata] = useState([]);
+  let [users, setUsers] = useState([
+    "mojombo",
+    "defunkt",
+    "pjhyett",
+    "wycats",
+    "ezmobius",
+    "ivey",
+  ]);
+
+  let [searchuser, setSearchuser] = useState("mojombo");
+
+  let [search, setSearch] = useState(false);
+  useEffect(() => {
+    async function data_fetch() {
+      let data = await fetch(`https://api.github.com/users/${searchuser}`);
+
+      let res = await data.json();
+
+      console.log([res]);
+      setdata([res]);
+    }
+
+    console.log("useEffect");
+
+    data_fetch();
+  }, [search]);
+
+  let handleSubmit = e => {
+    e.preventDefault();
+
+    setSearch(!search);
   };
-  let handleDecrement = () => {
-    setCount(prev => prev - 1);
-    // setCount(count - 1);
-  };
-  let handleReset = () => {
-    setCount(prev => prev * 0);
-    // setCount(0);
-  };
+
   return (
     <div>
-      <h1>{count}</h1>
-      <button onClick={handleIncrement}>+</button>
-      <button onClick={handleReset}>Reset</button>
-      <button onClick={handleDecrement}>-</button>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="search user ..."
+          list="user"
+          onChange={e => setSearchuser(e.target.value)}
+        />
+
+        <datalist id="user">
+          {users.map(value => {
+            return <option key={value} value={value} />;
+          })}
+        </datalist>
+
+        <button>➡️</button>
+      </form>
+
+      {data.map(value => {
+        return (
+          <div key={value.login}>
+            <img src={value.avatar_url} width="300px" />
+            <h1>{value.login}</h1>
+          </div>
+        );
+      })}
     </div>
   );
 };
 
 export default Main;
-
-// Ṛeact Provides 'useState' hook to implement state inside function components
-// By using state hook , we store any type of literal
-//
-// useState  returns array of satte variable and it's function to update the state and re-render UI after state update;
-// To use state and function , we have destructure it
-// to set default value of state , we can pass value to useState("value") ;
