@@ -1,15 +1,14 @@
-import React, { Component } from "react";
-import Main from "./components/Main";
+import React from "react";
+import C1 from "./component/C1";
+import C2 from "./component/C2";
+import { Store } from "./api/Store";
+const App = () => {
+  return (
+    <Store>
+      <C1 />
+      <C2 />
+    </Store>
+  );
+};
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <div>
-        <Main />
-      </div>
-    );
-  }
-}
+export default App;
