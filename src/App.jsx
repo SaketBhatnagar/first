@@ -1,13 +1,13 @@
 import React from "react";
-import C1 from "./component/C1";
-import C2 from "./component/C2";
-import { Store } from "./api/Store";
+import TodoStore from "./api/TodoStore";
+import Form from "./components/Form";
+import DisplayTodo from "./components/DisplayTodo";
 const App = () => {
   return (
-    <Store>
-      <C1 />
-      <C2 />
-    </Store>
+    <TodoStore>
+      <Form></Form>
+      <DisplayTodo />
+    </TodoStore>
   );
 };
 
